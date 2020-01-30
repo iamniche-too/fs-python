@@ -12,13 +12,13 @@ from confluent_kafka import Consumer
 ###
 
 # Address of the kafka servers and topic name
-kafka_servers = '192.168.56.101:9092'
+kafka_servers = '192.168.99.108:32400,192.168.99.108:32401,192.168.99.108:32402'
 topic_name = 'test'
 
 # Whether to only listen for messages that occurred since the consumer started ('latest'),
 # or to pick up all messages that the consumer has missed ('earliest').
 # Using 'latest' means the consumer must be started before the producer.
-read_topic_from = 'latest'
+read_topic_from = 'earliest'
 
 # How often to indicate data rate in seconds
 throughput_debug_interval_in_sec = 1

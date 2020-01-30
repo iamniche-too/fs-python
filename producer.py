@@ -36,9 +36,8 @@ throughput_debug_interval_in_sec = 1
 max_payloads_before_flush = 5
 
 # Address of the kafka servers and topic name
-kafka_servers = '192.168.56.101:9092'
+kafka_servers = '192.168.99.108:32400,192.168.99.108:32401,192.168.99.108:32402'
 topic_name = 'test'
-
 
 ###
 ### Do not change the below, use the configuration to calculate some settings
@@ -63,9 +62,10 @@ print('Connecting to Kafka @ {}' .format(kafka_servers))
 p = Producer({'bootstrap.servers': kafka_servers})
 
 # Read the schema for the sensor readings, each message contains an array of readings
-schema_path="readings.avsc"
+schema_path="/etc/git-repo/readings.avsc"
 schema = avro.schema.Parse(open(schema_path).read())
 
+print('Loading readings...')
 
 ###
 ### Reporting to periodically output rough MB/sec rate.
@@ -93,7 +93,7 @@ def delivery_report(err, msg):
         total_payloads_sent += 1
         
         current_time = int(time.time())
-        print('Recieved message @ '.format(current_time))        
+        #print('Recieved message @ {}'.format(current_time))        
 
         if current_time != rate_current_second:
             # We are in a new second, we can reset rate throttling
@@ -153,6 +153,8 @@ payload = bytes_writer.getvalue()
 start_time = int(time.time())
 window_start_time = int(time.time())
 rate_current_second = int(time.time())
+
+print('Sending data to Kafka')
 
 for i in range(payloads_to_send):
             
