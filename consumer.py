@@ -12,7 +12,8 @@ from confluent_kafka import Consumer
 ###
 
 # Address of the kafka servers and topic name
-kafka_servers = '192.168.99.108:32400,192.168.99.108:32401,192.168.99.108:32402'
+# kafka_servers = '192.168.99.108:32400,192.168.99.108:32401,192.168.99.108:32402'
+kafka_servers = 'kafka-0.kafka-service.kafka.svc.cluster.local:32400,kafka-1.kafka-service.kafka.svc.cluster.local:32401,kafka-2.kafka-service.kafka.svc.cluster.local:32402'
 topic_name = 'test'
 
 # Whether to only listen for messages that occurred since the consumer started ('latest'),
