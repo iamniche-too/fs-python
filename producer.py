@@ -21,7 +21,7 @@ sensor_id = 0
 payload_size_in_kb = 75
 
 # Total data to send in KB, will determine how long the producer runs for
-total_data_to_send_in_kb = 750000
+total_data_to_send_in_kb = 7500000
 
 # Upper limit on amount of data that should be sent per time interval (in KB/s)
 upper_data_rate_limit_kbs = 75000 
